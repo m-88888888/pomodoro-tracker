@@ -1,9 +1,6 @@
 import React from 'react';
+import PomodoroTimer from './PomodoroTimer';
 
-const App: React.FC = () => (
-  <div className="App">
-    <h1>Hello, World!</h1>
-  </div>
-);
+const App: React.FC = () => <PomodoroTimer />;
 
 export default App;
