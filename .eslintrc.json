@@ -20,23 +20,9 @@
     "project": "./tsconfig.eslint.json",
     "sourceType": "module"
   },
-  "plugins": [
-    "react-hooks",
-    "react",
-    "@typescript-eslint"
-    // "import"
-  ],
+  "plugins": ["react-hooks", "react", "@typescript-eslint"],
   "rules": {
-    "react/jsx-filename-extension": ["error", { "extensions": ["jsx", "tsx"] }],
-    "import/extensions": [
-      "error",
-      {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
-      }
-    ]
+    "react/jsx-filename-extension": ["error", { "extensions": ["jsx", "tsx"] }]
   },
   "overrides": [
     {
