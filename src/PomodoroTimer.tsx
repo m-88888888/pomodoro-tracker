@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Typography,
   Button,
@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import StatusMessage from './StatusMessage';
+import { TaskStateType } from './App';
 
 const WORKING_TIME = 1500;
 const BREAK_TIME = 300;
@@ -31,7 +32,14 @@ const format = (time: number) => {
 
 const audio = new Audio('http://www.kurage-kosho.info/mp3/button83.mp3');
 
-const PomodoroTimer: React.FC = () => {
+type PomodoroTimerProps = {
+  taskState: TaskStateType;
+};
+
+const PomodoroTimer: React.FC<PomodoroTimerProps> = (
+  props: PomodoroTimerProps
+) => {
+  const { taskState } = props;
   const classes = useStyles();
   const [counter, setCounter] = useState<number>(WORKING_TIME);
   const [timerId, setTimerId] = useState<NodeJS.Timeout | number>(0);
@@ -88,8 +96,11 @@ const PomodoroTimer: React.FC = () => {
               <Grid item xs={12}>
                 <Typography variant="h1">{format(counter)}</Typography>
               </Grid>
+              <Grid item xs={12}>
+                <Typography variant="h5">{taskState.task}</Typography>
+              </Grid>
             </Grid>
-            <Grid container alignItems="center" justify="center" spacing={1}>
+            <Grid container alignItems="center" justify="center" spacing={2}>
               <Grid item>
                 {session ? (
                   <Button onClick={stop} variant="contained" color="secondary">
