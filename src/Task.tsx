@@ -13,7 +13,10 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 type TaskProps = {
-  handleChange: (prop: string, event: any) => void;
+  handleChange: (
+    prop: string,
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => void;
 };
 
 const Task: React.FC<TaskProps> = (props: TaskProps) => {
@@ -27,7 +30,7 @@ const Task: React.FC<TaskProps> = (props: TaskProps) => {
           <TextField
             name="task"
             label="タスク"
-            onChange={(event: any) => {
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               handleChange('task', event);
             }}
             fullWidth
@@ -43,7 +46,7 @@ const Task: React.FC<TaskProps> = (props: TaskProps) => {
           <TextField
             name="days"
             label="日数"
-            onChange={(event: any) => {
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               handleChange('days', event);
             }}
           />
@@ -52,7 +55,7 @@ const Task: React.FC<TaskProps> = (props: TaskProps) => {
           <TextField
             name="hours"
             label="時間"
-            onChange={(event: any) => {
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               handleChange('hours', event);
             }}
           />
@@ -61,7 +64,7 @@ const Task: React.FC<TaskProps> = (props: TaskProps) => {
           <TextField
             name="minutes"
             label="分"
-            onChange={(event: any) => {
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               handleChange('minutes', event);
             }}
           />

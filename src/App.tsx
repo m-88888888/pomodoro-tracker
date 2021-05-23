@@ -17,7 +17,10 @@ const App: React.FC = () => {
     hours: 0,
     minutes: 0,
   });
-  const handleChange = (prop: string, event: any) => {
+  const handleChange = (
+    prop: string,
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
