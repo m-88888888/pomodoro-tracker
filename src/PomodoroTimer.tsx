@@ -14,10 +14,9 @@ import { TaskStateType } from './App';
 
 const WORKING_TIME = 1500;
 const BREAK_TIME = 300;
-const color = lightBlue[500];
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   card: {
-    backgroundColor: color,
+    backgroundColor: lightBlue[500],
   },
 }));
 
