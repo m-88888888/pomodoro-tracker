@@ -58,6 +58,7 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = (
       setWorking((w) => !w);
       handleWorkingTime();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [counter, timerId, working]);
 
   const start = () => {

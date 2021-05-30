@@ -20,7 +20,7 @@ const TimeChart: React.FC<TimeChartProps> = (
 
   React.useEffect(() => {
     setDataSet([planTime, workingTime]);
-  }, [hours, minutes, workingTime]);
+  }, [planTime, workingTime]);
 
   const data = {
     labels: ['予定', '実績'],
