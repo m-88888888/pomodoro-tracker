@@ -2,33 +2,27 @@ import React, { useState } from 'react';
 import { Divider } from '@material-ui/core';
 import PomodoroTimer from './PomodoroTimer';
 import Task from './Task';
-
-export type TaskStateType = {
-  task: string;
-  days: number;
-  hours: number;
-  minutes: number;
-};
+import TimeChart from './TimeChart';
 
 const App: React.FC = () => {
-  const [values, setValues] = useState<TaskStateType>({
-    task: '',
-    days: 0,
-    hours: 0,
-    minutes: 0,
-  });
-  const handleChange = (
-    prop: string,
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
+  const [task, setTask] = useState<string>('');
+  const [hours, setHours] = useState<number>(0);
+  const [minutes, setMinutes] = useState<number>(0);
+  const [workingTime, setWorkingTime] = useState<number>(0);
 
   return (
     <>
-      <PomodoroTimer taskState={values} />
+      <PomodoroTimer
+        task={task}
+        handleWorkingTime={() => setWorkingTime((value) => value + 25 / 60)}
+      />
       <Divider />
-      <Task handleChange={handleChange} />
+      <Task
+        handleTaskChange={setTask}
+        handleHoursChange={setHours}
+        handleMinutesChange={setMinutes}
+      />
+      <TimeChart hours={hours} minutes={minutes} workingTime={workingTime} />
     </>
   );
 };

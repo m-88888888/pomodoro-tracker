@@ -10,7 +10,6 @@ import {
 } from '@material-ui/core';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import StatusMessage from './StatusMessage';
-import { TaskStateType } from './App';
 
 const WORKING_TIME = 1500;
 const BREAK_TIME = 300;
@@ -32,13 +31,14 @@ const format = (time: number) => {
 const audio = new Audio('http://www.kurage-kosho.info/mp3/button83.mp3');
 
 type PomodoroTimerProps = {
-  taskState: TaskStateType;
+  task: string;
+  handleWorkingTime: () => void;
 };
 
 const PomodoroTimer: React.FC<PomodoroTimerProps> = (
   props: PomodoroTimerProps
 ) => {
-  const { taskState } = props;
+  const { task, handleWorkingTime } = props;
   const classes = useStyles();
   const [counter, setCounter] = useState<number>(WORKING_TIME);
   const [timerId, setTimerId] = useState<NodeJS.Timeout | number>(0);
@@ -56,6 +56,7 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = (
         }, 1000)
       );
       setWorking((w) => !w);
+      handleWorkingTime();
     }
   }, [counter, timerId, working]);
 
@@ -96,7 +97,7 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = (
                 <Typography variant="h1">{format(counter)}</Typography>
               </Grid>
               <Grid item xs={12}>
-                <Typography variant="h5">{taskState.task}</Typography>
+                <Typography variant="h5">{task}</Typography>
               </Grid>
             </Grid>
             <Grid container alignItems="center" justify="center" spacing={2}>
