@@ -13,15 +13,14 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 type TaskProps = {
-  handleChange: (
-    prop: string,
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => void;
+  handleTaskChange: (task: string) => void;
+  handleHoursChange: (hours: number) => void;
+  handleMinutesChange: (minutes: number) => void;
 };
 
 const Task: React.FC<TaskProps> = (props: TaskProps) => {
   const classes = useStyles();
-  const { handleChange } = props;
+  const { handleTaskChange, handleHoursChange, handleMinutesChange } = props;
 
   return (
     <>
@@ -30,10 +29,10 @@ const Task: React.FC<TaskProps> = (props: TaskProps) => {
           <TextField
             name="task"
             label="タスク"
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              handleChange('task', event);
-            }}
             fullWidth
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              handleTaskChange(event.target.value);
+            }}
           />
         </Grid>
       </Grid>
@@ -44,28 +43,21 @@ const Task: React.FC<TaskProps> = (props: TaskProps) => {
         spacing={2}>
         <Grid item>
           <TextField
-            name="days"
-            label="日数"
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              handleChange('days', event);
-            }}
-          />
-        </Grid>
-        <Grid item>
-          <TextField
+            type="number"
             name="hours"
             label="時間"
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              handleChange('hours', event);
+              handleHoursChange(parseInt(event.target.value));
             }}
           />
         </Grid>
         <Grid item>
           <TextField
+            type="number"
             name="minutes"
             label="分"
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              handleChange('minutes', event);
+              handleMinutesChange(parseInt(event.target.value));
             }}
           />
         </Grid>
