@@ -124,4 +124,4 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = (
   );
 };
 
-export default PomodoroTimer;
+export default React.memo(PomodoroTimer);
