@@ -24,4 +24,4 @@ export const StatusMessage: React.FC<StatusMessageProps> = (
   );
 };
 
-export default StatusMessage;
+export default React.memo(StatusMessage);
