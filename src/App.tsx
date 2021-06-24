@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Divider } from '@material-ui/core';
 import PomodoroTimer from './PomodoroTimer';
 import Task from './Task';
@@ -10,11 +10,15 @@ const App: React.FC = () => {
   const [minutes, setMinutes] = useState<number>(0);
   const [workingTime, setWorkingTime] = useState<number>(0);
 
+  const handleWorkingTime = useCallback(() => {
+    setWorkingTime((value) => value + 25 / 60)
+  }, [])
+
   return (
     <>
       <PomodoroTimer
         task={task}
-        handleWorkingTime={() => setWorkingTime((value) => value + 25 / 60)}
+        handleWorkingTime={handleWorkingTime}
       />
       <Divider />
       <Task

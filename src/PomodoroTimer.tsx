@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   Typography,
   Button,
@@ -10,9 +10,8 @@ import {
 } from '@material-ui/core';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import StatusMessage from './StatusMessage';
+import useTimer from './hooks/useTimer';
 
-const WORKING_TIME = 1500;
-const BREAK_TIME = 300;
 const useStyles = makeStyles(() => ({
   card: {
     backgroundColor: lightBlue[500],
@@ -40,45 +39,10 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = (
 ) => {
   const { task, handleWorkingTime } = props;
   const classes = useStyles();
-  const [counter, setCounter] = useState<number>(WORKING_TIME);
-  const [timerId, setTimerId] = useState<NodeJS.Timeout | number>(0);
-  const [session, setSession] = useState<boolean>(false); // ボタン管理用
-  const [working, setWorking] = useState<boolean>(true); // 作業中
-
-  useEffect(() => {
-    if (counter === 0) {
-      clearInterval(timerId as number);
-      audio.play();
-      working ? setCounter(BREAK_TIME) : setCounter(WORKING_TIME);
-      setTimerId(
-        setInterval(() => {
-          setCounter((c) => c - 1);
-        }, 1000)
-      );
-      setWorking((w) => !w);
-      handleWorkingTime();
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [counter, timerId, working]);
-
-  const start = () => {
-    setTimerId(
-      setInterval(() => {
-        setCounter((c) => c - 1);
-      }, 1000)
-    );
-    setSession(true);
-  };
-  const stop = () => {
-    clearInterval(timerId as number);
-    setSession(false);
-  };
-  const reset = () => {
-    clearInterval(timerId as number);
-    setCounter(WORKING_TIME);
-    setSession(false);
-    setWorking(true);
-  };
+  const [working, session, counter, start, stop, reset] = useTimer(
+    audio,
+    handleWorkingTime
+  );
 
   return (
     <>
@@ -124,4 +88,4 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = (
   );
 };
 
-export default PomodoroTimer;
+export default React.memo(PomodoroTimer);
