@@ -2,8 +2,6 @@ import React from 'react';
 import {
   Typography,
   Button,
-  Card,
-  CardContent,
   Grid,
   makeStyles,
   Container,
@@ -16,6 +14,9 @@ const useStyles = makeStyles(() => ({
   card: {
     backgroundColor: lightBlue[500],
   },
+  button: {
+    marginTop: 10
+  }
 }));
 
 const padTime = (time: number) => {
@@ -30,14 +31,13 @@ const format = (time: number) => {
 const audio = new Audio('http://www.kurage-kosho.info/mp3/button83.mp3');
 
 type PomodoroTimerProps = {
-  task: string;
   handleWorkingTime: () => void;
 };
 
 const PomodoroTimer: React.FC<PomodoroTimerProps> = (
   props: PomodoroTimerProps
 ) => {
-  const { task, handleWorkingTime } = props;
+  const { handleWorkingTime } = props;
   const classes = useStyles();
   const [working, session, counter, start, stop, reset] = useTimer(
     audio,
@@ -47,42 +47,35 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = (
   return (
     <>
       <Container maxWidth="sm">
-        <Card className={classes.card}>
-          <CardContent>
-            <Grid
-              container
-              direction="column"
-              alignItems="center"
-              justify="center"
-              spacing={2}>
-              <Grid item xs={12}>
-                <StatusMessage working={working} session={session} />
-              </Grid>
-              <Grid item xs={12}>
-                <Typography variant="h1">{format(counter)}</Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography variant="h5">{task}</Typography>
-              </Grid>
-            </Grid>
-            <Grid container alignItems="center" justify="center" spacing={2}>
-              <Grid item>
-                {session ? (
-                  <Button onClick={stop} variant="contained" color="secondary">
-                    Stop
-                  </Button>
-                ) : (
-                  <Button onClick={start} variant="contained" color="primary">
-                    Start
-                  </Button>
-                )}
-              </Grid>
-              <Grid item>
-                <Button onClick={reset}>Reset</Button>
-              </Grid>
-            </Grid>
-          </CardContent>
-        </Card>
+        <Grid
+          container
+          direction="column"
+          alignItems="center"
+          justify="center"
+          spacing={2}>
+          <Grid item xs={12}>
+            <Typography variant="h1">{format(counter)}</Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <StatusMessage working={working} session={session} />
+          </Grid>
+        </Grid>
+        <Grid container alignItems="center" justify="center" spacing={2} className={classes.button}>
+          <Grid item>
+            {session ? (
+              <Button onClick={stop} variant="contained" color="secondary">
+                Stop
+              </Button>
+            ) : (
+              <Button onClick={start} variant="contained" color="primary">
+                Start
+              </Button>
+            )}
+          </Grid>
+          <Grid item>
+            <Button onClick={reset}>Reset</Button>
+          </Grid>
+        </Grid>
       </Container>
     </>
   );
