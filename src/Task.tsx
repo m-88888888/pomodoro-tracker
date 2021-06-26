@@ -13,29 +13,16 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 type TaskProps = {
-  handleTaskChange: (task: string) => void;
   handleHoursChange: (hours: number) => void;
   handleMinutesChange: (minutes: number) => void;
 };
 
 const Task: React.FC<TaskProps> = (props: TaskProps) => {
   const classes = useStyles();
-  const { handleTaskChange, handleHoursChange, handleMinutesChange } = props;
+  const { handleHoursChange, handleMinutesChange } = props;
 
   return (
     <>
-      <Grid container justify="center">
-        <Grid item>
-          <TextField
-            name="task"
-            label="タスク"
-            fullWidth
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              handleTaskChange(event.target.value);
-            }}
-          />
-        </Grid>
-      </Grid>
       <Grid
         container
         justify="center"
