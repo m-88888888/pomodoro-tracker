@@ -6,9 +6,10 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/node:17.2.0 # ジョブのコマンドが実行されるプライマリ コンテナ
+      - image: cimg/node:17.2.0
     steps:
-      - run: echo "hello world" # `echo` コマンドを実行します
+      - run: echo "hello world"
+      - run: echo hoge
       - slack/notify:
           event: fail
 
