@@ -9,7 +9,7 @@ jobs:
       - image: cimg/node:17.2.0
     steps:
       - run: echo "hello world"
-      - run: xxx 
+      - run: echo $(git log -1 HEAD --pretty=format:%s)
+      - run: xxx
       - slack/notify:
           event: fail
-
