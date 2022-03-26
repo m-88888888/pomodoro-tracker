@@ -5,9 +5,11 @@ orbs:
 
 jobs:
   build:
+    working_directory: ~/$(CIRCLE_PROJECT_REPONAME)
     docker:
       - image: cimg/node:17.2.0
     steps:
+      - checkout
       - run: echo "hello world"
       - run: echo $(git log -1 HEAD --pretty=format:%s)
       - run: echo "export COMMIT_MESSAGE=\"$(git log --format=%B -n 1 $CIRCLE_SHA1)\""
