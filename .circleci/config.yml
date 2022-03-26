@@ -9,7 +9,7 @@ jobs:
       - image: cimg/node:17.2.0
     steps:
       - run: echo "hello world"
-      - run: echo hoge
+      - run: xxx 
       - slack/notify:
           event: fail
 
