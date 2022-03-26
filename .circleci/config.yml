@@ -1,68 +1,14 @@
 version: 2.1
 
 orbs:
-  slack: circleci/slack@4.8.3
+  slack: m-88888888/slack-notify-orb@dev:first
 
 jobs:
   build:
     docker:
       - image: cimg/node:17.2.0 # ジョブのコマンドが実行されるプライマリ コンテナ
     steps:
-      - checkout # プロジェクト ディレクトリ内のコードをチェックアウトします
       - run: echo "hello world" # `echo` コマンドを実行します
       - slack/notify:
-          event: pass
-          custom: |
-            {
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": ":tada::tada::tada: *Success!*"
-                  }
-                },
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Project:*\n${CIRCLE_PROJECT_REPONAME}"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*When:*\n$(TZ=Asia/Tokyo date +'%Y/%m/%d %T')"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Job:*\n${CIRCLE_JOB}"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Author:*\n${CIRCLE_USERNAME}"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Branch:*\n${CIRCLE_BRANCH}"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Tag:*\n${CIRCLE_TAG}"
-                    }
-                  ]
-                },
-                {
-                  "type": "actions",
-                  "elements": [
-                    {
-                      "type": "button",
-                      "text": {
-                        "type": "plain_text",
-                        "text": "View Job"
-                      },
-                      "url": "${CIRCLE_BUILD_URL}"
-                    }
-                  ]
-                }
-              ]
-            }
+          event: fail
+
