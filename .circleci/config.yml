@@ -11,7 +11,5 @@ jobs:
     steps:
       - checkout
       - run: echo "hello world"
-      # - run: xxx
-      - slack/notify:
-          # event: fail
+      - slack/notify
 
