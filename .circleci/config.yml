@@ -11,8 +11,7 @@ jobs:
     steps:
       - checkout
       - run: echo "hello world"
-      - run: echo $(git log -1 HEAD --pretty=format:%s)
-      - run: echo "export COMMIT_MESSAGE=\"$(git log --format=%B -n 1 $CIRCLE_SHA1)\""
-      - run: xxx
+      # - run: xxx
       - slack/notify:
-          event: fail
+          # event: fail
+
