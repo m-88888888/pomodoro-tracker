@@ -13,5 +13,4 @@ jobs:
       - run: echo "hello world"
       - run: xxx
       - slack/notify:
-          slack_name_mappings: "{ \"<@U028A93RR5F>\": \"m-88888888\" }"
-
+          slack_name_mappings: '{ "<@U028A93RR5F>": "m-88888888", "<@Uhogehoge>": "TestUser" }'
