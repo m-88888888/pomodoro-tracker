@@ -12,5 +12,6 @@ jobs:
       - checkout
       - run: echo "hello world"
       - run: xxx
-      - slack/notify
+      - slack/notify:
+          slack_name_mappings: "{ \"hachi\": \"m-88888888\" }"
 
