@@ -13,5 +13,5 @@ jobs:
       - run: echo "hello world"
       - run: xxx
       - slack/notify:
-          slack_name_mappings: "{ \"hachi\": \"m-88888888\" }"
+          slack_name_mappings: "{ \"@hachi\": \"m-88888888\" }"
 
