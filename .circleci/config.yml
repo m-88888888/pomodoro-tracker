@@ -14,4 +14,4 @@ jobs:
       - run: xxx
       - slack/notify:
           slack_name_mappings: '{ "<@U028A93RR5F>": "m-88888888", "<@Uhogehoge>": "TestUser" }'
-          # deploy_flag: true
+          deploy_flag: false
