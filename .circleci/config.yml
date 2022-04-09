@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  slack: m-88888888/slack-notify-orb@1.0.0
+  slack: m-88888888/slack-notify-orb@1.0.1
 
 jobs:
   build:
