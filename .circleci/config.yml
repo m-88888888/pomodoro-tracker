@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  slack: m-88888888/slack-notify-orb@1.0.1
+  slack: m-88888888/slack-notify-orb@dev:first
 
 jobs:
   build:
@@ -13,4 +13,4 @@ jobs:
       - run: exit 0
       - slack/notify:
           slack_name_mappings: '{ "<@U028A93RR5F>": "m-88888888", "<@Uhogehoge>": "TestUser" }'
-          deploy_flag: false
+          deploy_flag: true
