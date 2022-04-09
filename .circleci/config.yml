@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  slack: m-88888888/slack-notify-orb@dev:first
+  slack: m-88888888/slack-notify-orb@1.0.0
 
 jobs:
   build:
@@ -9,9 +9,7 @@ jobs:
     docker:
       - image: cimg/node:17.2.0
     steps:
-      - checkout
-      - run: echo "hello world"
-      - run: xxx
+      - run: exit 0
       - slack/notify:
           slack_name_mappings: '{ "<@U028A93RR5F>": "m-88888888", "<@Uhogehoge>": "TestUser" }'
           deploy_flag: false
