@@ -10,7 +10,7 @@ jobs:
       - image: cimg/node:17.2.0
     steps:
       - checkout
-      - run: exit 0
+      - run: exit 1
       - slack/notify:
           slack_name_mappings: '{ "<@U028A93RR5F>": "m-88888888", "<@Uhogehoge>": "TestUser" }'
           deploy_flag: true
